@@ -1,5 +1,4 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+foo_insurance:
+    path: /foo-insurance/show-xml
+    controller: App\Controller\InsuranceFooController::showXML
+    methods: POST
