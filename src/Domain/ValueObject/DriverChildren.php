@@ -17,6 +17,11 @@ class DriverChildren
         $this->isDriverChildren = ('SI' === $driverChildren);
     }
 
+    public function isDriverChildren(): bool
+    {
+        return $this->isDriverChildren;
+    }
+
     /**
      * @throws BadRequestException when invalid driver children
      */
@@ -28,10 +33,5 @@ class DriverChildren
                 $driverChildren
             ));
         }
-    }
-
-    public function isDriverChildren(): bool
-    {
-        return $this->isDriverChildren;
     }
 }

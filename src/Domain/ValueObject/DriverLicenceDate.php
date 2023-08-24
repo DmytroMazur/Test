@@ -18,7 +18,7 @@ class DriverLicenceDate
         $this->driverLicenceDate = $driverLicenceDate;
     }
 
-    public function getDriverLicenceDate(): DateTimeInterface
+    public function getValue(): DateTimeInterface
     {
         return $this->driverLicenceDate;
     }

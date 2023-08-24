@@ -27,11 +27,11 @@ class FooInsuranceClient implements InsuranceInterface
     private function mappingFields(Insurance $insurance): array
     {
         return [
-            'CodDocumento' => $insurance->getDriverId()->getDriverId(),
-            'EstadoCivil' => $insurance->getDriverCivilStatus()->getCivilStatus()->name,
+            'CodDocumento' => $insurance->getDriverId()->getValue(),
+            'EstadoCivil' => $insurance->getDriverCivilStatus()->getValue(),
             'HijosCarnet' => $insurance->getDriverChildren()->isDriverChildren() ? 'SI' : 'NO',
-            'FecCarnet' => $insurance->getDriverLicenceDate()->getDriverLicenceDate()->format(self::FORMAT_DATE),
-            'FecNacimiento' => $insurance->getDriverBirthDate()?->getDriverBirthDate()->format(self::FORMAT_DATE)
+            'FecCarnet' => $insurance->getDriverLicenceDate()->getValue()->format(self::FORMAT_DATE),
+            'FecNacimiento' => $insurance->getDriverBirthDate()?->getValue()->format(self::FORMAT_DATE)
         ];
     }
 }

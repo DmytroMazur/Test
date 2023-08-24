@@ -18,6 +18,11 @@ class DriverCivilStatus
         $this->civilStatus = 'Soltero'=== $civilStatus ? CivilStatus::Soltero : CivilStatus::Casado;
     }
 
+    public function getValue(): string
+    {
+        return $this->civilStatus->name;
+    }
+
     /**
      * @throws BadRequestException when invalid civil status
      */
@@ -29,10 +34,5 @@ class DriverCivilStatus
                 $civilStatus
             ));
         }
-    }
-
-    public function getCivilStatus(): CivilStatus
-    {
-        return $this->civilStatus;
     }
 }

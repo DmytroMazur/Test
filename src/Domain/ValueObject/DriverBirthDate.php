@@ -21,7 +21,7 @@ class DriverBirthDate
         $this->driverBirthDate = $driverBirthDate;
     }
 
-    public function getDriverBirthDate(): ?DateTimeInterface
+    public function getValue(): ?DateTimeInterface
     {
         return $this->driverBirthDate;
     }

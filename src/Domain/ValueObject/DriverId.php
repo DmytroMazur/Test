@@ -17,6 +17,11 @@ class DriverId
         $this->driverId = $driverId;
     }
 
+    public function getValue(): string
+    {
+        return $this->driverId;
+    }
+
     /**
      * @throws BadRequestException when driver id is invalid
      */
@@ -25,10 +30,5 @@ class DriverId
         if (1 !== preg_match(self::DRIVER_ID_PATTERN, $driverId)) {
             throw new BadRequestException(sprintf('%s %s', self::DRIVER_ID_ERROR_MESSAGES, $driverId));
         }
-    }
-
-    public function getDriverId(): string
-    {
-        return $this->driverId;
     }
 }
