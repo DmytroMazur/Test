@@ -15,7 +15,7 @@ class DriverCivilStatusTest extends TestCase
     public function testValidCivilStatus(CivilStatus $civilStatus): void
     {
         $driverCivilStatus = new DriverCivilStatus($civilStatus->name);
-        $this->assertSame($civilStatus->name, $driverCivilStatus->getCivilStatus()->name);
+        $this->assertSame($civilStatus->name, $driverCivilStatus->getValue());
     }
 
     /**

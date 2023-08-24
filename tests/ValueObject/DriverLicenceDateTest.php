@@ -15,7 +15,7 @@ class DriverLicenceDateTest extends TestCase
     public function testValidDriverLicenceDate($validDate): void
     {
         $driverLicenceDate = new DriverLicenceDate($validDate);
-        $this->assertSame($validDate, $driverLicenceDate->getDriverLicenceDate());
+        $this->assertSame($validDate, $driverLicenceDate->getValue());
     }
 
     /**

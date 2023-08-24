@@ -14,7 +14,7 @@ class DriverIdTest extends TestCase
     public function testValidDriverId(string $validDriverId): void
     {
         $driverId = new DriverId($validDriverId);
-        $this->assertSame($validDriverId, $driverId->getDriverId());
+        $this->assertSame($validDriverId, $driverId->getValue());
     }
 
     /**

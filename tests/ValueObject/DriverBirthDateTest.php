@@ -15,7 +15,7 @@ class DriverBirthDateTest extends TestCase
     public function testValidDriverBirthDate($validBirthDate): void
     {
         $driverBirthDate = new DriverBirthDate($validBirthDate);
-        $this->assertSame($validBirthDate, $driverBirthDate->getDriverBirthDate());
+        $this->assertSame($validBirthDate, $driverBirthDate->getValue());
     }
 
     /**
