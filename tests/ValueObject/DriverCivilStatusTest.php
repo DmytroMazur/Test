@@ -29,7 +29,7 @@ class DriverCivilStatusTest extends TestCase
         new DriverCivilStatus($invalidCivilStatus);
     }
 
-    public function validCivilStatusProvider(): array
+    private function validCivilStatusProvider(): array
     {
         return [
             [CivilStatus::Soltero],
@@ -37,7 +37,7 @@ class DriverCivilStatusTest extends TestCase
         ];
     }
 
-    public function invalidCivilStatusProvider(): array
+    private function invalidCivilStatusProvider(): array
     {
         return [
             ['Complicado'],

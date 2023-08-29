@@ -29,7 +29,7 @@ class DriverLicenceDateTest extends TestCase
         new DriverLicenceDate($futureDate);
     }
 
-    public function validDriverLicenceDateProvider(): array
+    private function validDriverLicenceDateProvider(): array
     {
         return [
             [new DateTime('2020-01-01')],
@@ -37,7 +37,7 @@ class DriverLicenceDateTest extends TestCase
         ];
     }
 
-    public function invalidDriverLicenceDateProvider(): array
+    private function invalidDriverLicenceDateProvider(): array
     {
         return [
             [new DateTime('tomorrow')],

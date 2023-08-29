@@ -10,6 +10,7 @@ class DriverId
     public const DRIVER_ID_ERROR_MESSAGES = 'Invalid driver id';
 
     private string $driverId;
+
     public function __construct(string $driverId)
     {
         $this->validate($driverId);

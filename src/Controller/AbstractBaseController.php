@@ -7,7 +7,6 @@ use App\Application\UseCase\CreateInsuranceXML;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -25,7 +24,9 @@ abstract class AbstractBaseController extends AbstractController
             $parameters['driver_id'] ?? null,
             $parameters['driver_civilStatus'] ?? null,
             $parameters['driver_children'] ?? null,
-            $parameters['driver_birthDate'] ?? null
+            $parameters['driver_birthDate'] ?? null,
+                $parameters['prevInsurance_exists'] ?? null,
+                $parameters['prevInsurance_expirationDate'] ?? null
         );
     }
 
@@ -40,5 +41,5 @@ abstract class AbstractBaseController extends AbstractController
         return json_encode([$errors]);
     }
 
-    public abstract function showXML(Request $request): Response|JsonResponse;
+    public abstract function createXML(Request $request): JsonResponse;
 }

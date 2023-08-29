@@ -2,20 +2,24 @@
 
 namespace App\Domain\Model;
 
-use App\Domain\ValueObject\DriverBirthDate;
+use App\Domain\ValueObject\DriverBirthdate;
 use App\Domain\ValueObject\DriverChildren;
 use App\Domain\ValueObject\DriverCivilStatus;
 use App\Domain\ValueObject\DriverId;
 use App\Domain\ValueObject\DriverLicenceDate;
+use App\Domain\ValueObject\PrevInsuranceExists;
+use App\Domain\ValueObject\PrevInsuranceExpirationDate;
 
 class Insurance
 {
     public function __construct(
-        private readonly DriverId $driverId,
-        private readonly DriverLicenceDate $driverLicenceDate,
-        private readonly DriverCivilStatus $driverCivilStatus,
-        private readonly DriverChildren $driverChildren,
-        private readonly ?DriverBirthDate $driverBirthDate
+        private readonly DriverId                     $driverId,
+        private readonly DriverLicenceDate            $driverLicenceDate,
+        private readonly DriverCivilStatus            $driverCivilStatus,
+        private readonly DriverChildren               $driverChildren,
+        private readonly ?DriverBirthdate             $driverBirthdate,
+        private readonly PrevInsuranceExists          $prevInsuranceExists,
+        private readonly ?PrevInsuranceExpirationDate $prevInsuranceExpirationDate
     ) {}
 
     public function getDriverId(): DriverId
@@ -38,8 +42,18 @@ class Insurance
         return $this->driverChildren;
     }
 
-    public function getDriverBirthDate(): ?DriverBirthDate
+    public function getDriverBirthdate(): ?DriverBirthdate
     {
-        return $this->driverBirthDate;
+        return $this->driverBirthdate;
+    }
+
+    public function IsPrevInsuranceExist(): PrevInsuranceExists
+    {
+        return $this->prevInsuranceExists;
+    }
+
+    public function getPrevInsuranceExpirationDate(): ?PrevInsuranceExpirationDate
+    {
+        return $this->prevInsuranceExpirationDate;
     }
 }

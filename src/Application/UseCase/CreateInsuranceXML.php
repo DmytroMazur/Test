@@ -5,11 +5,13 @@ namespace App\Application\UseCase;
 use App\Application\Dto\InputParameterDTO;
 use App\Domain\InsuranceInterface;
 use App\Domain\Model\Insurance;
-use App\Domain\ValueObject\DriverBirthDate;
+use App\Domain\ValueObject\DriverBirthdate;
 use App\Domain\ValueObject\DriverChildren;
 use App\Domain\ValueObject\DriverCivilStatus;
 use App\Domain\ValueObject\DriverId;
 use App\Domain\ValueObject\DriverLicenceDate;
+use App\Domain\ValueObject\PrevInsuranceExists;
+use App\Domain\ValueObject\PrevInsuranceExpirationDate;
 
 class CreateInsuranceXML
 {
@@ -20,10 +22,13 @@ class CreateInsuranceXML
             new DriverLicenceDate($inputParameterDTO->getDriverLicenceDate()),
             new DriverCivilStatus($inputParameterDTO->getDriverCivilStatus()),
             new DriverChildren($inputParameterDTO->getDriverChildren()),
-            null !== $inputParameterDTO->getDriverBirthDate() ?
-                new DriverBirthDate($inputParameterDTO->getDriverBirthDate()) : null
+            null !== $inputParameterDTO->getDriverBirthdate() ?
+                new DriverBirthdate($inputParameterDTO->getDriverBirthdate()) : null,
+            new PrevInsuranceExists($inputParameterDTO->getPrevInsuranceExists()),
+            null !== $inputParameterDTO->getPrevInsuranceExpirationDate() ?
+                new PrevInsuranceExpirationDate($inputParameterDTO->getPrevInsuranceExpirationDate(), $inputParameterDTO->getDriverLicenceDate()) : null
         );
 
-        return $insuranceInterface->builtXml($insurance);
+        return $insuranceInterface->createXML($insurance);
     }
 }

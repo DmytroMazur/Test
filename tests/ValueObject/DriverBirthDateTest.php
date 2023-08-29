@@ -2,7 +2,7 @@
 
 namespace App\Tests\ValueObject;
 
-use App\Domain\ValueObject\DriverBirthDate;
+use App\Domain\ValueObject\DriverBirthdate;
 use DateTime;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -14,7 +14,7 @@ class DriverBirthDateTest extends TestCase
      */
     public function testValidDriverBirthDate($validBirthDate): void
     {
-        $driverBirthDate = new DriverBirthDate($validBirthDate);
+        $driverBirthDate = new DriverBirthdate($validBirthDate);
         $this->assertSame($validBirthDate, $driverBirthDate->getValue());
     }
 
@@ -24,12 +24,12 @@ class DriverBirthDateTest extends TestCase
     public function testInvalidDriverBirthDateThrowsException($invalidBirthDate): void
     {
         $this->expectException(BadRequestException::class);
-        $this->expectExceptionMessage(DriverBirthDate::DRIVER_CIVIL_STATUS_ERROR_MESSAGES);
+        $this->expectExceptionMessage(DriverBirthdate::DRIVER_BIRTHDATE_ERROR_MESSAGES);
 
-        new DriverBirthDate($invalidBirthDate);
+        new DriverBirthdate($invalidBirthDate);
     }
 
-    public function validDriverBirthDateProvider(): array
+    private function validDriverBirthDateProvider(): array
     {
         return [
             [new DateTime('2000-01-01')],
@@ -37,7 +37,7 @@ class DriverBirthDateTest extends TestCase
         ];
     }
 
-    public function invalidDriverBirthDateProvider(): array
+    private function invalidDriverBirthDateProvider(): array
     {
         return [
             [new DateTime('tomorrow')],

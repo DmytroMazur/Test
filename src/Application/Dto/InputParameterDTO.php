@@ -26,20 +26,31 @@ class InputParameterDTO
     private ?string $driverChildren;
 
     #[Assert\Type('DateTimeInterface')]
-    private ?DateTimeInterface $driverBirthDate;
+    private ?DateTimeInterface $driverBirthdate;
+
+    #[Assert\NotBlank]
+    private ?string $prevInsuranceExists;
+
+    #[Assert\Type('DateTimeInterface')]
+    private ?DateTimeInterface $prevInsuranceExpirationDate;
 
     public function __construct(
         ?string $driverLicenceDate,
         ?string $driverId,
         ?string $driverCivilStatus,
         ?string $driverChildren,
-        ?string $driverBirthDate
+        ?string $driverBirthdate,
+        ?string $prevInsuranceExists,
+        ?string $prevInsuranceExpirationDate
     ) {
         $this->driverLicenceDate = !empty($driverLicenceDate) ? DateTime::createFromFormat('Y-m-d', $driverLicenceDate) : null;
         $this->driverId = $driverId;
         $this->driverCivilStatus = $driverCivilStatus;
         $this->driverChildren = $driverChildren;
-        $this->driverBirthDate = !empty($driverBirthDate) ? DateTime::createFromFormat('Y-m-d', $driverBirthDate) : null;
+        $this->driverBirthdate = !empty($driverBirthdate) ? DateTime::createFromFormat('Y-m-d', $driverBirthdate) : null;
+        $this->prevInsuranceExists = $prevInsuranceExists;
+        $this->prevInsuranceExpirationDate = !empty($prevInsuranceExpirationDate) ?
+            DateTime::createFromFormat('Y-m-d', $prevInsuranceExpirationDate) : null;
     }
 
     public function getDriverLicenceDate(): DateTimeInterface
@@ -62,8 +73,18 @@ class InputParameterDTO
         return $this->driverChildren;
     }
 
-    public function getDriverBirthDate(): ?DateTimeInterface
+    public function getDriverBirthdate(): ?DateTimeInterface
     {
-        return $this->driverBirthDate;
+        return $this->driverBirthdate;
+    }
+
+    public function getPrevInsuranceExists(): string
+    {
+        return $this->prevInsuranceExists;
+    }
+
+    public function getPrevInsuranceExpirationDate(): ?DateTimeInterface
+    {
+        return $this->prevInsuranceExpirationDate;
     }
 }

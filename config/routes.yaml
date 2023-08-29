@@ -1,4 +1,4 @@
 foo_insurance:
-    path: /foo-insurance/show-xml
-    controller: App\Controller\InsuranceFooController::showXML
+    path: /foo-insurance/create-xml
+    controller: App\Controller\InsuranceFooController::createXML
     methods: POST

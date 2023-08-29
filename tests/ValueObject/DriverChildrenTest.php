@@ -28,7 +28,7 @@ class DriverChildrenTest extends TestCase
         new DriverChildren($invalidInput);
     }
 
-    public function validDriverChildrenProvider(): array
+    private function validDriverChildrenProvider(): array
     {
         return [
             ['SI', true],
@@ -36,7 +36,7 @@ class DriverChildrenTest extends TestCase
         ];
     }
 
-    public function invalidDriverChildrenProvider(): array
+    private function invalidDriverChildrenProvider(): array
     {
         return [
             ['Yes'],

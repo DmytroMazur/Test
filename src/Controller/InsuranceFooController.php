@@ -2,11 +2,10 @@
 
 namespace App\Controller;
 
-use App\Application\Dto\InputParameterDTO;
 use App\Application\UseCase\CreateInsuranceXML;
-use App\Infrastruture\FooInsuranceClient;
+use App\Application\UseCase\SaveInsuranceXML;
+use App\Infrastructure\FooInsuranceClient;
 use Exception;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,7 +22,7 @@ class InsuranceFooController extends AbstractBaseController
         parent::__construct($createInsuranceXML, $validator);
     }
 
-    public function showXML(Request $request): Response|JsonResponse
+    public function createXML(Request $request): JsonResponse
     {
         try {
             $parameters = $this->parseRequestParameters(json_decode($request->getContent(), true));
@@ -33,11 +32,14 @@ class InsuranceFooController extends AbstractBaseController
                 throw new BadRequestException($this->formatValidationErrors($violations));
             }
 
-            $xmlContent = $this->createInsuranceXML->createXML($parameters, $this->fooInsurance);
+            $fileName = $this->createInsuranceXML->createXML($parameters, $this->fooInsurance);
 
-            return new Response($xmlContent, Response::HTTP_CREATED, [
-                'Content-Type' => 'application/xml'
-            ]);
+            return new JsonResponse(
+                [
+                    'success' => true,
+                    'fileName' => $fileName
+                ],
+                Response::HTTP_CREATED);
         } catch (BadRequestException $exception) {
             return new JsonResponse(['error' => $exception->getMessage()], Response::HTTP_BAD_REQUEST);
         } catch (Exception $exception) {
@@ -45,4 +47,3 @@ class InsuranceFooController extends AbstractBaseController
         }
     }
 }
-
