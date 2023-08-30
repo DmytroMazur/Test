@@ -37,7 +37,7 @@ class InsuranceFooController extends AbstractBaseController
             return new JsonResponse(
                 [
                     'success' => true,
-                    'fileName' => $fileName
+                    'filename' => $fileName
                 ],
                 Response::HTTP_CREATED);
         } catch (BadRequestException $exception) {
